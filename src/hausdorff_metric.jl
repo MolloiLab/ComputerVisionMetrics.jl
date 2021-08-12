@@ -1,9 +1,17 @@
 """
-    mean_hausdorff(set1, set2)
+    hausdorff_metric(set1, set2)
+    hausdorff_metric(set1, set2, p)
 
-Given two sets of points `set1` & `set2`, compute the mean Hausdorff between the two sets
+Given two sets of points `set1` & `set2`, compute the Hausdorff distance between the two sets.
+By default the returned Hausdorff is the mean Hausdorff. If given a parameter `p`, Returns a 
+tuple for the percentile of each set.
+
+# Arguments
+- set1: set of points in 2D or 3D space
+- set2: set of points in 2D or 3D space
+- p: percentile to be computed based on `StatsBase.percentile`
 """
-function mean_hausdorff(set1, set2)
+function hausdorff_metric(set1, set2)
     min_euc_list_u = []
     min_euc_list_v = []
 
@@ -34,12 +42,12 @@ function mean_hausdorff(set1, set2)
 end
 
 """
-    percentile_hausdorff(set1, set2, p)
+    hausdorff_metric(set1, set2, p)
 
 Given two sets of points `set1` & `set2`, compute the percentile `p` of the Hausdorff between the two sets.
 Returns a tuple for the percentile of each set
 """
-function percentile_hausdorff(set1, set2, p)
+function hausdorff_metric(set1, set2, p)
     min_euc_list_u = []
     min_euc_list_v = []
 

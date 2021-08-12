@@ -11,8 +11,7 @@ include("utils.jl")
 
 export 
     dice_metric,
-    mean_hausdorff,
-    percentile_hausdorff,
+    hausdorff_metric,
     mean_hausdorff_2D,
     euc,
     find_edges,
