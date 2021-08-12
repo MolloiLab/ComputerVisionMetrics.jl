@@ -41,12 +41,6 @@ function hausdorff_metric(set1, set2)
     ])
 end
 
-"""
-    hausdorff_metric(set1, set2, p)
-
-Given two sets of points `set1` & `set2`, compute the percentile `p` of the Hausdorff between the two sets.
-Returns a tuple for the percentile of each set
-"""
 function hausdorff_metric(set1, set2, p)
     min_euc_list_u = []
     min_euc_list_v = []
