@@ -4,6 +4,8 @@ authors = ["Dale <djblack@uci.edu> and contributors"]
 version = "0.1.0"
 
 [deps]
+ImageEdgeDetection = "2b14c160-480b-11ea-1b58-656063328ff7"
+ImageMorphology = "787d08f9-d448-5407-9aad-5290dd7ab264"
 TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 
 [compat]
