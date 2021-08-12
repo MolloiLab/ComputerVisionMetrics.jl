@@ -1,5 +1,8 @@
 module ComputerVisionMetrics
 
-# Write your package code here.
+include("dice_metric.jl")
+
+export 
+    dice_metric
 
 end
