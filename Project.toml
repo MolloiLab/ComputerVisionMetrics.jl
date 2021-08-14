@@ -12,6 +12,7 @@ StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 TestSetExtensions = "98d24dd4-01ad-11ea-1b02-c9a08f80db04"
 
 [compat]
+ImageEdgeDetection = "0.1"
 julia = "1"
 
 [extras]
