@@ -1,13 +1,13 @@
 using Test
 
 @testset "dice" begin
-    include("../src/dice.jl")
+    include("dice.jl")
 end
 
 @testset "hausdorff" begin
-    include("../src/hausdorff.jl")
+    include("hausdorff.jl")
 end
 
 @testset "utils" begin
-    include("../src/utils.jl")
+    include("utils.jl")
 end
