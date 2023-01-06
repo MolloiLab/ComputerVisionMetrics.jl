@@ -37,6 +37,13 @@ Given two sets of points, `set1` & `set2`, compute the Hausdorff distance betwee
 - `p`: percentile to be computed based on `StatsBase.percentile`
 """
 function _hausdorff(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}, directed::Bool=false) where N
+	if length(set1) == 0 && length(set2) == 0
+		return 0
+	elseif length(set1) == 0
+		return Inf
+	elseif length(set2) == 0
+		return Inf
+	end
     min_euc_list_u = []
     min_euc_list_v = []
 
@@ -72,6 +79,13 @@ end
 
 # ╔═╡ 2bf857bb-952e-4c9b-bf4d-2194dd151cdf
 function _hausdorff(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}, p, directed::Bool=false) where N
+	if length(set1) == 0 && length(set2) == 0
+		return 0
+	elseif length(set1) == 0
+		return Inf
+	elseif length(set2) == 0
+		return Inf
+	end
     min_euc_list_u = []
     min_euc_list_v = []
 
@@ -211,6 +225,27 @@ md"""
 ## Tests
 """
 
+# ╔═╡ bd010bfd-5cf6-469c-b5cb-06e33801a626
+let
+	seg_pred = rand([0, 1], 50, 50)
+	seg_gt = copy(seg_pred)
+	PlutoTest.@test hausdorff(seg_pred, seg_gt) == 0
+end
+
+# ╔═╡ a6d33037-7dc9-4513-bd3b-d07c74ceca1a
+let
+	seg_pred = Bool.(rand([0, 1], 50, 50))
+	seg_gt = Bool.(zeros(50, 50))
+	PlutoTest.@test hausdorff(seg_pred, seg_gt) == Inf
+end
+
+# ╔═╡ 55dd6784-ab7f-409f-b3df-345bb13209de
+# let
+# 	seg_pred = rand([0, 1], 50, 50)
+# 	seg_gt = zeros(50, 50)
+# 	PlutoTest.@test hausdorff(seg_pred, seg_gt) == Inf
+# end
+
 # ╔═╡ 0410cfe9-25fe-4933-9e30-3f831fa4ec83
 let
 	seg_pred = [
@@ -285,6 +320,9 @@ end
 # ╠═17131b9d-f27d-4292-af65-65d7c2715cd4
 # ╠═f29d35ea-d71c-49c4-84d5-41301e1f1046
 # ╟─094a8181-789e-46e4-a064-dff7e2e6ac00
+# ╠═bd010bfd-5cf6-469c-b5cb-06e33801a626
+# ╠═a6d33037-7dc9-4513-bd3b-d07c74ceca1a
+# ╠═55dd6784-ab7f-409f-b3df-345bb13209de
 # ╠═0410cfe9-25fe-4933-9e30-3f831fa4ec83
 # ╠═9a86ac8d-db53-476b-a8cf-2dd53b394bcd
 # ╠═450a661d-86c5-4bb9-84c6-62b781751faa
