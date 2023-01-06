@@ -1,3 +1,6 @@
 [deps]
-ComputerVisionMetrics = "56beca70-ca20-45da-83c4-a042539b6c19"
-Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+ImageMorphology = "787d08f9-d448-5407-9aad-5290dd7ab264"
+PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
