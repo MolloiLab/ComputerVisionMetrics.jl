@@ -1,1 +1,0 @@
-dice_metric(ŷ, y) = 2 * sum((ŷ .& y)) / (sum(ŷ) + sum(y))

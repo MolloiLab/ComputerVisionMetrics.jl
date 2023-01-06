@@ -1,11 +1,13 @@
-# include("imports.jl")
-# include("dice_metric.jl")
-# include("hausdorff_metric.jl")
+using Test
 
+@testset "dice" begin
+    include("../src/dice.jl")
+end
 
-using ComputerVisionMetrics
-# using Test
+@testset "hausdorff" begin
+    include("../src/hausdorff.jl")
+end
 
-# @testset "utils" begin
-#     include("../src/utils.jl")
-# end
+@testset "utils" begin
+    include("../src/utils.jl")
+end

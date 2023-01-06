@@ -9,8 +9,6 @@ using InteractiveUtils
 begin
 	using Pkg; Pkg.activate("..")
 	using PlutoUI, PlutoTest
-	using Statistics: mean
-	using StatsBase: percentile
 	using ImageMorphology: erode, feature_transform, distance_transform
 end
 
@@ -67,6 +65,9 @@ function get_mask_edges(seg_pred::AbstractArray, seg_gt::AbstractArray, points=t
 	end
 end
 
+# ╔═╡ 451a95fc-c0f6-48f2-a095-9056a6b797e3
+export get_mask_edges
+
 # ╔═╡ a03cce12-2a68-4683-bab8-d9c7a42190f7
 md"""
 ## Tests
@@ -96,7 +97,7 @@ let
 		CartesianIndex(4, 4)
 		CartesianIndex(5, 4)
 	]
-	@test edges_pred == answer
+	PlutoTest.@test edges_pred == answer
 end
 
 # ╔═╡ cc913e38-d41b-40d6-a080-456bdf5610c1
@@ -134,7 +135,7 @@ let
 		CartesianIndex(4, 4, 2)
 		CartesianIndex(5, 4, 2)
 	]
-	@test edges_pred == answer
+	PlutoTest.@test edges_pred == answer
 end
 
 # ╔═╡ 01a15f04-2eee-493e-a04d-0ed49d8723b0
@@ -152,6 +153,9 @@ function euc(u::CartesianIndex{3}, v::CartesianIndex{3})
     return √((u[1] - v[1])^2 + (u[2] - v[2])^2 + (u[3] - v[3])^2)
 end
 
+# ╔═╡ 299d0435-2223-47a2-bea0-3d77b0fc64c6
+export euc
+
 # ╔═╡ 675436b8-1729-4243-bbf8-6e55df5cdcb8
 md"""
 ## Tests
@@ -160,14 +164,14 @@ md"""
 # ╔═╡ a2352a34-3c48-4f23-ac78-5b9f08630318
 let
 	A = CartesianIndex(1, 3, 1)
-    @test euc(A, A) == 0
+    PlutoTest.@test euc(A, A) == 0
 end
 
 # ╔═╡ bd511e55-3842-4f2d-8063-ea17955a7ad5
 let
 	A = CartesianIndex(1, 3, 1)
 	C = CartesianIndex(1, 3, 2)
-	@test euc(A, C) == 1.0
+	PlutoTest.@test euc(A, C) == 1.0
 end
 
 # ╔═╡ Cell order:
@@ -176,12 +180,14 @@ end
 # ╟─388373db-1cb4-4e03-9bbb-24032593b59a
 # ╠═c722f492-7a26-4217-bf6f-2c88581bf594
 # ╠═c7e9927c-8ce2-47ea-a851-1b4fc53b5b26
+# ╠═451a95fc-c0f6-48f2-a095-9056a6b797e3
 # ╟─a03cce12-2a68-4683-bab8-d9c7a42190f7
 # ╠═7880e999-fac9-42cc-971a-ce2c4dd041b5
 # ╠═cc913e38-d41b-40d6-a080-456bdf5610c1
 # ╟─01a15f04-2eee-493e-a04d-0ed49d8723b0
 # ╠═9d1d02ed-5755-41d4-9ad4-64352bab54de
 # ╠═da95367e-a530-48c0-91a7-c4922d7b4175
+# ╠═299d0435-2223-47a2-bea0-3d77b0fc64c6
 # ╟─675436b8-1729-4243-bbf8-6e55df5cdcb8
 # ╠═a2352a34-3c48-4f23-ac78-5b9f08630318
 # ╠═bd511e55-3842-4f2d-8063-ea17955a7ad5
