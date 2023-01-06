@@ -64,9 +64,9 @@ function _hausdorff(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex
 	    end
 	    # Take the mean of each of these points 
 		# to return the mean Hausdorff distance 
-	    return max(min_euc_list_u, min_euc_list_v)
+	    return max(maximum(min_euc_list_u), maximum(min_euc_list_v))
 	else
-		return max(min_euc_list_u)
+		return maximum(min_euc_list_u)
 	end
 end
 
@@ -109,6 +109,21 @@ md"""
 ## Tests
 """
 
+# ╔═╡ 0fbc0b81-cb4f-4c91-b00d-3f4a0155bd34
+let
+	seg_pred = [
+		0 0 0 0 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+		0 0 0 0 0
+	]
+	seg_gt = copy(seg_pred)
+	edges_pred, edges_gt = get_mask_edges(seg_pred, seg_gt)
+	PlutoTest.@test _hausdorff(edges_pred, edges_gt) == 0
+end
+
 # ╔═╡ ee8df24d-85e7-4327-af6c-ebd2c746dfda
 let
 	seg_pred = [
@@ -122,6 +137,22 @@ let
 	seg_gt = copy(seg_pred)
 	edges_pred, edges_gt = get_mask_edges(seg_pred, seg_gt)
 	PlutoTest.@test _hausdorff(edges_pred, edges_gt, 40) == 0
+end
+
+# ╔═╡ c8c4f15b-bbb8-4cac-a672-d66be00a3b41
+let
+	seg_pred = [
+		0 0 0 0 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+		0 0 0 0 0
+	]
+	seg_pred = cat(seg_pred, seg_pred, dims=3)
+	seg_gt = copy(seg_pred)
+	edges_pred, edges_gt = get_mask_edges(seg_pred, seg_gt)
+	PlutoTest.@test _hausdorff(edges_pred, edges_gt) == 0
 end
 
 # ╔═╡ efcfc548-e507-4f67-9a92-f0965b3358b4
@@ -180,6 +211,20 @@ md"""
 ## Tests
 """
 
+# ╔═╡ 0410cfe9-25fe-4933-9e30-3f831fa4ec83
+let
+	seg_pred = [
+		0 0 0 0 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+		0 0 0 0 0
+	]
+	seg_gt = copy(seg_pred)
+	PlutoTest.@test hausdorff(seg_pred, seg_gt) == 0
+end
+
 # ╔═╡ 9a86ac8d-db53-476b-a8cf-2dd53b394bcd
 let
 	seg_pred = [
@@ -192,6 +237,21 @@ let
 	]
 	seg_gt = copy(seg_pred)
 	PlutoTest.@test hausdorff(seg_pred, seg_gt, 40) == 0
+end
+
+# ╔═╡ 450a661d-86c5-4bb9-84c6-62b781751faa
+let
+	seg_pred = [
+		0 0 0 0 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+	    0 1 1 1 0
+		0 0 0 0 0
+	]
+	seg_pred = cat(seg_pred, seg_pred, dims=3)
+	seg_gt = copy(seg_pred)
+	PlutoTest.@test hausdorff(seg_pred, seg_gt) == 0
 end
 
 # ╔═╡ 0bef36bd-2c38-4bca-95be-d8b14130ca87
@@ -216,12 +276,16 @@ end
 # ╠═c2b20bc1-9164-455e-8f06-97296524ad34
 # ╠═2bf857bb-952e-4c9b-bf4d-2194dd151cdf
 # ╟─079dc65c-fe10-4f5c-9ed4-ecacd9151207
+# ╠═0fbc0b81-cb4f-4c91-b00d-3f4a0155bd34
 # ╠═ee8df24d-85e7-4327-af6c-ebd2c746dfda
+# ╠═c8c4f15b-bbb8-4cac-a672-d66be00a3b41
 # ╠═efcfc548-e507-4f67-9a92-f0965b3358b4
 # ╟─891cb402-ec4b-46de-bb9b-724112f496a9
 # ╠═63364395-b6ab-4f91-8f15-f5312d96c3bc
 # ╠═17131b9d-f27d-4292-af65-65d7c2715cd4
 # ╠═f29d35ea-d71c-49c4-84d5-41301e1f1046
 # ╟─094a8181-789e-46e4-a064-dff7e2e6ac00
+# ╠═0410cfe9-25fe-4933-9e30-3f831fa4ec83
 # ╠═9a86ac8d-db53-476b-a8cf-2dd53b394bcd
+# ╠═450a661d-86c5-4bb9-84c6-62b781751faa
 # ╠═0bef36bd-2c38-4bca-95be-d8b14130ca87
