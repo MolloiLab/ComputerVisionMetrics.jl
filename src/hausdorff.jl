@@ -1,7 +1,11 @@
 using StatsBase: percentile
 
 """
-    compute_min_euc_distances(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}) where N
+## compute_min_euc_distances
+
+```julia
+compute_min_euc_distances(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}) where N
+```
 
 Compute the minimum Euclidean distances for each point in `set1` to every point in `set2`.
 
@@ -22,10 +26,13 @@ function compute_min_euc_distances(set1::Vector{CartesianIndex{N}}, set2::Vector
 end
 
 """
-    _hausdorff_metric(
-		set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}};
-		per::Union{Nothing, Real}=nothing, directed::Bool=false
-	) where N
+## _hausdorff_metric
+```julia
+_hausdorff_metric(
+    set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}};
+    per::Union{Nothing, Real}=nothing, directed::Bool=false
+) where N
+```
 
 Compute the Hausdorff distance between two sets of points, `set1` and `set2`.
 
@@ -66,10 +73,13 @@ function _hausdorff_metric(
 end
 
 """
-    hausdorff_metric(
-		prediction::AbstractArray, ground_truth::AbstractArray;
-		per::Union{Nothing, Real}=nothing, directed::Bool=false
-	)
+## hausdorff_metric
+```julia
+hausdorff_metric(
+    prediction::AbstractArray, ground_truth::AbstractArray;
+    per::Union{Nothing, Real}=nothing, directed::Bool=false
+)
+```
 
 Compute the Hausdorff distance between two masks, `prediction` and `ground_truth`.
 

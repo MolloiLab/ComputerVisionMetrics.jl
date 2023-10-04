@@ -1,11 +1,14 @@
 using ImageMorphology: erode, feature_transform, distance_transform
 
 """
+## get_mask_edges
 
-	get_mask_edges(seg_pred::AbstractMatrix, seg_gt::AbstractMatrix, points=true)
-	get_mask_edges(seg_pred::BitMatrix, seg_gt::BitMatrix, points=true)
-	get_mask_edges(seg_pred::BitArray, seg_gt::BitArray, points=true)
-	get_mask_edges(seg_pred::BitArray, seg_gt::BitArray, points=true)
+```julia
+get_mask_edges(seg_pred::AbstractMatrix, seg_gt::AbstractMatrix, points=true)
+get_mask_edges(seg_pred::BitMatrix, seg_gt::BitMatrix, points=true)
+get_mask_edges(seg_pred::BitArray, seg_gt::BitArray, points=true)
+get_mask_edges(seg_pred::BitArray, seg_gt::BitArray, points=true)
+```
 
 See [Monai](https://github.com/Project-MONAI/MONAI/blob/dev/monai/metrics/utils.py#L106)
 """
@@ -69,8 +72,12 @@ end
 export get_mask_edges
 
 """
-	euc(u::CartesianIndex{2}, v::CartesianIndex{2})
-	euc(u::CartesianIndex{3}, v::CartesianIndex{3})
+## euc
+
+```julia
+euc(u::CartesianIndex{2}, v::CartesianIndex{2})
+euc(u::CartesianIndex{3}, v::CartesianIndex{3})
+```
 
 Euclidean distance
 """

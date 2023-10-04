@@ -1,6 +1,9 @@
 
 """
-	dice_metric(prediction::AbstractArray, ground_truth::AbstractArray)
+## dice_metric
+```julia
+dice_metric(prediction::AbstractArray, ground_truth::AbstractArray)
+```
 
 Compute the Dice Coefficient (also known as the Sørensen–Dice index) between two binary masks, `prediction` and `ground_truth`.
 
