@@ -1,6 +1,6 @@
 
 """
-## dice_metric
+## `dice_metric`
 ```julia
 dice_metric(prediction::AbstractArray, ground_truth::AbstractArray)
 ```

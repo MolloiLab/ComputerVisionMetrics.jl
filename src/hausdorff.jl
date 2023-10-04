@@ -1,7 +1,7 @@
 using StatsBase: percentile
 
 """
-## compute_min_euc_distances
+## `compute_min_euc_distances`
 
 ```julia
 compute_min_euc_distances(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}) where N
@@ -26,7 +26,7 @@ function compute_min_euc_distances(set1::Vector{CartesianIndex{N}}, set2::Vector
 end
 
 """
-## _hausdorff_metric
+## `_hausdorff_metric`
 ```julia
 _hausdorff_metric(
     set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}};
@@ -73,7 +73,7 @@ function _hausdorff_metric(
 end
 
 """
-## hausdorff_metric
+## `hausdorff_metric`
 ```julia
 hausdorff_metric(
     prediction::AbstractArray, ground_truth::AbstractArray;

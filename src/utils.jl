@@ -1,7 +1,7 @@
 using ImageMorphology: erode, feature_transform, distance_transform
 
 """
-## get_mask_edges
+## `get_mask_edges`
 
 ```julia
 get_mask_edges(seg_pred::AbstractMatrix, seg_gt::AbstractMatrix, points=true)
@@ -72,7 +72,7 @@ end
 export get_mask_edges
 
 """
-## euc
+## `euc`
 
 ```julia
 euc(u::CartesianIndex{2}, v::CartesianIndex{2})
