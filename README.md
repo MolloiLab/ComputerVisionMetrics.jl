@@ -24,7 +24,7 @@ Basic usage involves passing your predicted and ground truth segmentation masks 
 ```julia
 # Load your data
 prediction = rand([0, 1], 10, 10, 10)
-ground_truth = rand([0, 1], 10, 10)
+ground_truth = rand([0, 1], 10, 10, 10)
 
 # Evaluate Dice metric
 dice_score = dice_metric(prediction, ground_truth)
