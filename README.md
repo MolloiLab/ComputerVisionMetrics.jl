@@ -22,6 +22,8 @@ Pkg.add("ComputerVisionMetrics")
 Basic usage involves passing your predicted and ground truth segmentation masks to the metric functions:
 
 ```julia
+using ComputerVisionMetrics
+
 # Load your data
 prediction = rand([0, 1], 10, 10, 10)
 ground_truth = rand([0, 1], 10, 10, 10)
