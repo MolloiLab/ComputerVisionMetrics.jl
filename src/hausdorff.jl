@@ -1,118 +1,96 @@
 using StatsBase: percentile
 
 """
+    compute_min_euc_distances(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}) where N
 
-	_hausdorff_metric(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}, directed=false) where N
-	_hausdorff_metric(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}, p, directed=false) where N
-
-Given two sets of points, `set1` & `set2`, compute the Hausdorff distance between the two sets. By default, the returned Hausdorff is the max Hausdorff and is two-sided. If given a parameter `p`, return a tuple for each set's percentile. To choose a one-sided Hausdorff, change `directed=true`
+Compute the minimum Euclidean distances for each point in `set1` to every point in `set2`.
 
 #### Arguments
-- `set1`: set of points in 2D or 3D space
-- `set2`: set of points in 2D or 3D space
-- `p`: percentile to be computed based on `StatsBase.percentile`
+- `set1`: First set of points in 2D or 3D space.
+- `set2`: Second set of points in 2D or 3D space.
+
+#### Returns
+- Vector of minimum Euclidean distances.
 """
-function _hausdorff_metric(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}; directed::Bool=false) where N
-	if length(set1) == 0 && length(set2) == 0
-		return 0
-	elseif length(set1) == 0
-		return Inf
-	elseif length(set2) == 0
-		return Inf
-	end
-    min_euc_list_u = []
-    min_euc_list_v = []
-
-    # Loop through every point in `set1` and 
-	# find its corresponding closest point to `set2`
-    for points1 in set1
-        euc_list_1 = []
-        for points2 in set2
-            euclidean_dist = euc(points1, points2)
-            append!(euc_list_1, euclidean_dist)
-        end
-        append!(min_euc_list_u, minimum(euc_list_1))
+function compute_min_euc_distances(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}) where N
+    min_euc_list = []
+    for point1 in set1
+        euc_dists = [euc(point1, point2) for point2 in set2]
+        push!(min_euc_list, minimum(euc_dists))
     end
-
-	if !directed
-	    # Loop through every point in `set2` and 
-		# find its corresponding closest point to `set1`
-	    for points1 in set2
-	        euc_list_1 = []
-	        for points2 in set1
-	            euclidean_dist = euc(points1, points2)
-	            append!(euc_list_1, euclidean_dist)
-	        end
-	        append!(min_euc_list_v, minimum(euc_list_1))
-	    end
-	    # Take the mean of each of these points 
-		# to return the mean Hausdorff distance 
-	    return max(maximum(min_euc_list_u), maximum(min_euc_list_v))
-	else
-		return maximum(min_euc_list_u)
-	end
-end
-
-function _hausdorff_metric(set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}}, p; directed::Bool=false) where N
-	if length(set1) == 0 && length(set2) == 0
-		return 0
-	elseif length(set1) == 0
-		return Inf
-	elseif length(set2) == 0
-		return Inf
-	end
-    min_euc_list_u = []
-    min_euc_list_v = []
-
-    # Loop through every point in `set1` and 
-	# find its corresponding closest point to `set2`
-    for points1 in set1
-        euc_list_1 = []
-        for points2 in set2
-            euclidean_dist = euc(points1, points2)
-            append!(euc_list_1, euclidean_dist)
-        end
-        append!(min_euc_list_u, minimum(euc_list_1))
-    end
-
-	if !directed
-	    # Loop through every point in `set2` and 
-		# find its corresponding closest point to `set1`
-	    for points1 in set2
-	        euc_list_1 = []
-	        for points2 in set1
-	            euclidean_dist = euc(points1, points2)
-	            append!(euc_list_1, euclidean_dist)
-	        end
-	        append!(min_euc_list_v, minimum(euc_list_1))
-	    end
-	
-	    return max(percentile(min_euc_list_u, p), percentile(min_euc_list_v, p))
-	else
-		return percentile(min_euc_list_u, p)
-	end
+    return min_euc_list
 end
 
 """
+    _hausdorff_metric(
+		set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}};
+		per::Union{Nothing, Real}=nothing, directed::Bool=false
+	) where N
 
-	hausdorff_metric(seg_pred::AbstractArray, seg_gt::AbstractArray, directed=false)
-	hausdorff_metric(seg_pred::AbstractArray, seg_gt::AbstractArray, p, directed=false)
+Compute the Hausdorff distance between two sets of points, `set1` and `set2`.
 
-Given two arrays, `seg_pred` & `seg_gt`, compute the Hausdorff distance. By default, the returned Hausdorff is the max Hausdorff and is two-sided. If given a parameter `p`, return a tuple for each set's percentile. To choose a one-sided Hausdorff, change `directed=true`
+This function has multiple methods depending on the arguments provided:
+
+1. Without `per`: Computes the standard Hausdorff distance.
+2. With `per`: Computes the Hausdorff distance at the specified percentile.
 
 #### Arguments
-- `seg_pred`: predicted mask. 2D or 3D array of `::Bool` or `::Int`
-- `seg_gt`: ground_truth mask. 2D or 3D array of `::Bool` or `::Int`
-- `p`: percentile to be computed based on `StatsBase.percentile`
+- `set1`: First set of points in 2D or 3D space.
+- `set2`: Second set of points in 2D or 3D space.
+- `per`: Percentile for the Hausdorff distance (optional).
+- `directed`: If `true`, computes one-sided Hausdorff. Default is `false`.
+
+#### Returns
+- Hausdorff distance or Hausdorff distance at the specified percentile.
 """
-function hausdorff_metric(seg_pred::AbstractArray, seg_gt::AbstractArray; directed::Bool=false)
-	edges_pred, edges_gt = get_mask_edges(seg_pred, seg_gt)
-	return _hausdorff_metric(edges_pred, edges_gt; directed = directed)
+function _hausdorff_metric(
+	set1::Vector{CartesianIndex{N}}, set2::Vector{CartesianIndex{N}};
+	per::Union{Nothing, Real}=nothing, directed::Bool=false
+	) where N
+    if isempty(set1) && isempty(set2)
+        return 0
+    elseif isempty(set1) || isempty(set2)
+        return Inf
+    end
+
+    min_euc_list_u = compute_min_euc_distances(set1, set2)
+
+    if !directed
+        min_euc_list_v = compute_min_euc_distances(set2, set1)
+        max_distance = max(maximum(min_euc_list_u), maximum(min_euc_list_v))
+    else
+        max_distance = maximum(min_euc_list_u)
+    end
+
+	return isnothing(per) ? max_distance : percentile([min_euc_list_u; min_euc_list_v], per)
 end
 
-function hausdorff_metric(seg_pred::AbstractArray, seg_gt::AbstractArray, p; directed::Bool=false)
-	edges_pred, edges_gt = get_mask_edges(seg_pred, seg_gt)
-	return _hausdorff_metric(edges_pred, edges_gt, p; directed = directed)
+"""
+    hausdorff_metric(
+		prediction::AbstractArray, ground_truth::AbstractArray;
+		per::Union{Nothing, Real}=nothing, directed::Bool=false
+	)
+
+Compute the Hausdorff distance between two masks, `prediction` and `ground_truth`.
+
+This function has multiple methods depending on the arguments provided:
+
+1. Without `per`: Computes the standard Hausdorff distance.
+2. With `per`: Computes the Hausdorff distance at the specified percentile.
+
+#### Arguments
+- `prediction`: Predicted mask, 2D or 3D array of `::Bool` or `::Int`.
+- `ground_truth`: Ground truth mask, 2D or 3D array of `::Bool` or `::Int`.
+- `per`: Percentile for the Hausdorff distance (optional).
+- `directed`: If `true`, computes one-sided Hausdorff. Default is `false`.
+
+#### Returns
+- Hausdorff distance or Hausdorff distance at the specified percentile.
+"""
+function hausdorff_metric(prediction::AbstractArray, ground_truth::AbstractArray;
+		per::Union{Nothing, Real}=nothing, directed::Bool=false)
+    edges_pred, edges_gt = get_mask_edges(prediction, ground_truth)
+    return _hausdorff_metric(edges_pred, edges_gt; per=per, directed=directed)
 end
 
 export hausdorff_metric
