@@ -15,10 +15,10 @@ begin
 end
 
 # ╔═╡ 6822f0bf-f953-40e9-8969-289fc841c882
-prediction = rand([0, 1], 10, 10, 10)
+prediction = rand([0, 1], 10, 10, 10);
 
 # ╔═╡ 5d56ab65-fab5-47d5-8452-4330ee589241
-ground_truth = rand([0, 1], 10, 10, 10)
+ground_truth = rand([0, 1], 10, 10, 10);
 
 # ╔═╡ 53f96607-6f10-41a7-9ae4-2397924ce41d
 dice_score = dice_metric(prediction, ground_truth)

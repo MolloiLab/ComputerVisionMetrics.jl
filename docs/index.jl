@@ -1,10 +1,6 @@
 ### A Pluto.jl notebook ###
 # v0.19.26
 
-#> [frontmatter]
-#> title = "ComputerVisionMetrics"
-#> sidebar = "false"
-
 using Markdown
 using InteractiveUtils
 
@@ -72,8 +68,8 @@ end
 
 # ╔═╡ ef1d1605-0725-473f-9967-e087379b9b64
 article_list = Article[
-	Article("Getting Started", "getting_started.jl", "https://images.example.com/getting-started.jpg"),
-	Article("API", "api.jl", "https://images.example.com/api.jpg"),
+	Article("Getting Started", "getting_started.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
+	Article("API", "api.jl", "https://images.unsplash.com/photo-1503789146722-cf137a3c0fea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2562&q=80"),
 ];
 
 # ╔═╡ c36e45ca-3aab-41ff-8c80-0fb4f9ed9c36
@@ -130,9 +126,9 @@ version = "0.1.7"
 # ╔═╡ Cell order:
 # ╟─de44e159-3a61-440d-8db1-0004be55ef97
 # ╟─7bc9b327-7b84-4a32-aa4f-07cf36eaac7d
+# ╟─ef1d1605-0725-473f-9967-e087379b9b64
 # ╟─487ea05f-75d6-49b3-9845-73d29d6b0495
 # ╟─dea10035-3eb5-41f1-b2cc-694237f5f1f3
-# ╟─ef1d1605-0725-473f-9967-e087379b9b64
 # ╟─c36e45ca-3aab-41ff-8c80-0fb4f9ed9c36
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
