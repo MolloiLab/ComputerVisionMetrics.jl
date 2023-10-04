@@ -1,13 +1,6 @@
+using ComputerVisionMetrics
 using Test
 
-@testset "dice" begin
-    include("dice.jl")
-end
-
-@testset "hausdorff" begin
-    include("hausdorff.jl")
-end
-
-@testset "utils" begin
-    include("utils.jl")
-end
+include("hausdorff.jl")
+include("dice.jl")
+include("utils.jl")
