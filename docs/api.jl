@@ -3,7 +3,7 @@
 
 #> [frontmatter]
 #> title = "API"
-#> sidebar = "false"
+#> category = "API"
 
 using Markdown
 using InteractiveUtils
