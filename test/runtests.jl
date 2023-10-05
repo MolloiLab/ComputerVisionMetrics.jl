@@ -1,6 +1,6 @@
 using ComputerVisionMetrics
 using Test
 
-include("hausdorff.jl")
-include("dice.jl")
+include("dice_metric.jl")
+include("hausdorff_metric.jl")
 include("utils.jl")
