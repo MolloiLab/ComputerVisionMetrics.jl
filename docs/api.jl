@@ -23,11 +23,6 @@ end
 # ╔═╡ 0e3a840c-aebe-47e6-bdba-be8b54af2e55
 TableOfContents()
 
-# ╔═╡ cb588ce4-3d28-4337-891a-999ebe9ccc79
-md"""
-# API
-"""
-
 # ╔═╡ 5cb2767d-7ab0-4fec-ad61-163204d8913a
 all_names = [name for name in names(ComputerVisionMetrics)]
 
