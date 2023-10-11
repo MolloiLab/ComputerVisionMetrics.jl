@@ -13,6 +13,7 @@ using InteractiveUtils
 begin
 	using Pkg
 	Pkg.activate(".")
+	Pkg.instantiate()
 
 	using ComputerVisionMetrics
 end

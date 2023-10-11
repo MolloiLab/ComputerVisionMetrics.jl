@@ -13,6 +13,7 @@ using InteractiveUtils
 begin
 	using Pkg
 	Pkg.activate(".")
+	Pkg.instantiate()
 
 	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr
 	using PlutoUI
