@@ -12,8 +12,7 @@ using InteractiveUtils
 # ╠═╡ show_logs = false
 begin
 	using Pkg
-	Pkg.activate(temp = true)
-	Pkg.add(url = "https://github.com/Dale-Black/ComputerVisionMetrics.jl")
+	Pkg.activate(".")
 
 	using ComputerVisionMetrics
 end
@@ -25,10 +24,10 @@ prediction = rand([0, 1], 10, 10, 10);
 ground_truth = rand([0, 1], 10, 10, 10);
 
 # ╔═╡ 53f96607-6f10-41a7-9ae4-2397924ce41d
-dice_score = dice_metric(prediction, ground_truth)
+dsc_metric = dice_metric(prediction, ground_truth)
 
 # ╔═╡ 063e9158-50d8-41fc-a2f2-311b40caa376
-hausdorff_score = hausdorff_metric(prediction, ground_truth)
+hd_metric = hausdorff_metric(prediction, ground_truth)
 
 # ╔═╡ Cell order:
 # ╠═4f4d8462-6301-11ee-2ca4-e7f0724d728d
