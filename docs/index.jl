@@ -60,7 +60,7 @@ end;
 
 # ╔═╡ 64ad0e5b-cd12-4c4b-ad27-b65d1d7938e1
 index_title_card(
-	"ComputerVisionMetrics",
+	"ComputerVisionMetrics.jl",
 	"Common Metrics for Evaluating Segmentation Tasks",
 	"https://img.freepik.com/free-photo/colorful-bar-graph-sits-table-with-dark-background_1340-34474.jpg";
 	data_theme = data_theme
