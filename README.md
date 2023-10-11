@@ -35,4 +35,4 @@ dice_score = dice_metric(prediction, ground_truth)
 hausdorff_score = hausdorff_metric(prediction, ground_truth)
 ```
 
-For more advanced usage and options, see the [documentation](https://glassnotebook.io/r/7uus7O8aIcLsGebjQFqxU/docs/(00)%20Getting%20Started.jl)
+For more advanced usage and options, see the [documentation](https://glassnotebook.io/r/3zGd8BbRwota3gclkiu2j/docs/index.jl)
