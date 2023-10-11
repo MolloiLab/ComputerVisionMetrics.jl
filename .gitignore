@@ -4,6 +4,6 @@
 /docs/build/
 
 *DS_Store
-*Manifest.toml
-*./Manifest.toml
-**/Manifest.toml
+# *Manifest.toml
+# *./Manifest.toml
+# **/Manifest.toml
