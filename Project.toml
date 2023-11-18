@@ -4,16 +4,14 @@ authors = ["Dale <djblack@uci.edu> and contributors"]
 version = "0.1.0"
 
 [deps]
-ImageMorphology = "787d08f9-d448-5407-9aad-5290dd7ab264"
-StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [compat]
-julia = "^1.7"
-ImageMorphology = "^0.4.5"
-StatsBase = "^0.34.2"
+julia = "1.9"
 
 [extras]
+ImageDistances = "51556ac3-7006-55f5-8cb3-34580c88182d"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["ImageDistances", "Test"]

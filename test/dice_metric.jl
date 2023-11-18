@@ -1,11 +1,30 @@
 using ComputerVisionMetrics
 using Test
 
-@testset "dice_metric" begin
-	x = [0 0 0 1; 0 0 0 1; 0 0 0 1; 0 0 0 1]
-	y = [1 1 1 0; 1 1 1 0; 1 1 1 0; 1 1 1 0]
-	@test dice_metric(x, y) == 0
-
-	x = [1 1 1 0; 1 1 1 0; 1 1 1 0; 1 1 1 0]
-	@test dice_metric(x, x) == 1
+@testset "Dice Metric" begin
+	@testset "dice_metric 2D" begin
+		for i in 1:100
+			img1 = rand([0.0f0, 1.0f0], 100, 100)
+			img2 = copy(img1)
+			@test dice_metric(img1, img2) == 1
+		end
+		for i in 1:100
+			img1 = rand([0.0f0, 1.0f0], 100, 100)
+			img2 = rand([0.0f0, 1.0f0], 100, 100)
+			@test dice_metric(img1, img2) < 1
+		end
+	end
+	
+	@testset "dice_metric 3D" begin
+		for i in 1:100
+			img1 = rand([0.0f0, 1.0f0], 10, 10, 10)
+			img2 = copy(img1)
+			@test dice_metric(img1, img2) == 1
+		end
+		for i in 1:100
+			img1 = rand([0.0f0, 1.0f0], 10, 10, 10)
+			img2 = rand([0.0f0, 1.0f0], 10, 10, 10)
+			@test dice_metric(img1, img2) < 1
+		end
+	end
 end

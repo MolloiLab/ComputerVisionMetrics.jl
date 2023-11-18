@@ -1,42 +1,21 @@
 using ComputerVisionMetrics
+using ImageDistances: hausdorff
 using Test
 
-@testset "_hausdorff_metric" begin
-    seg_pred = [
-        0 0 0 0 0
-        0 1 1 1 0
-        0 1 1 1 0
-        0 1 1 1 0
-        0 1 1 1 0
-        0 0 0 0 0
-    ]
-    seg_gt = copy(seg_pred)
-    edges_pred, edges_gt = get_mask_edges(seg_pred, seg_gt)
-    @test ComputerVisionMetrics._hausdorff_metric(edges_pred, edges_gt) == 0
-    @test ComputerVisionMetrics._hausdorff_metric(edges_pred, edges_gt, per=40) == 0
-    
-    seg_pred = cat(seg_pred, seg_pred, dims=3)
-    seg_gt = copy(seg_pred)
-    edges_pred, edges_gt = get_mask_edges(seg_pred, seg_gt)
-    @test ComputerVisionMetrics._hausdorff_metric(edges_pred, edges_gt) == 0
-    @test ComputerVisionMetrics._hausdorff_metric(edges_pred, edges_gt, per=40) == 0
-end
+@testset "Hausdorff Metric" begin
+	@testset "hausdorff_metric 2D" begin
+		img1, img2 = rand([0.0f0, 1.0f0], 100, 100), rand([0.0f0, 1.0f0], 100, 100)
+		for i in 1:100
+			hd = hausdorff_metric(img1, img2)
+			@test isapprox(hd, hausdorff(img1, img2); rtol = 0.5)
+		end
+	end
 
-@testset "hausdorff_metric" begin
-    seg_pred = [
-        0 0 0 0 0
-        0 1 1 1 0
-        0 1 1 1 0
-        0 1 1 1 0
-        0 1 1 1 0
-        0 0 0 0 0
-    ]
-    seg_gt = copy(seg_pred)
-    @test hausdorff_metric(seg_pred, seg_gt) == 0
-    @test hausdorff_metric(seg_pred, seg_gt, per=40) == 0
-
-    seg_pred = cat(seg_pred, seg_pred, dims=3)
-    seg_gt = copy(seg_pred)
-    @test hausdorff_metric(seg_pred, seg_gt) == 0
-    @test hausdorff_metric(seg_pred, seg_gt, per=40) == 0
+	@testset "hausdorff_metric 3D" begin
+		img1, img2 = rand([0.0f0, 1.0f0], 10, 10, 10), rand([0.0f0, 1.0f0], 10, 10, 10)
+		for i in 1:100
+			hd = hausdorff_metric(img1, img2)
+			@test isapprox(hd, hausdorff(img1, img2); rtol = 0.5)
+		end
+	end
 end

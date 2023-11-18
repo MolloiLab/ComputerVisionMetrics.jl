@@ -17,6 +17,11 @@ The Dice Coefficient measures the similarity between two sets and ranges from 0 
 - Dice Coefficient value between the two masks.
 """
 function dice_metric(prediction::AbstractArray, ground_truth::AbstractArray)
+    prediction, ground_truth = Bool.(prediction), Bool.(ground_truth)
+    return 2 * sum((prediction .& ground_truth)) / (sum(prediction) + sum(ground_truth))
+end
+
+function dice_metric(prediction::BitArray, ground_truth::BitArray)
     return 2 * sum((prediction .& ground_truth)) / (sum(prediction) + sum(ground_truth))
 end
 
