@@ -2,8 +2,7 @@
 # v0.19.26
 
 #> [frontmatter]
-#> title = "ComputerVisionMetrics"
-#> sidebar = "false"
+#> title = "Home"
 
 using Markdown
 using InteractiveUtils
@@ -75,13 +74,12 @@ end
 
 # ╔═╡ 9f5dedbb-92ee-4099-ab47-24eb4954392c
 article_list_tutorials = Article[
-	Article("Getting Started", "docs/getting_started.jl", "https://img.freepik.com/free-photo/futuristic-spaceship-takes-off-into-purple-galaxy-fueled-by-innovation-generated-by-ai_24640-100023.jpg"),
-	Article("Advanced Usage", "docs/advanced_usage.jl", "https://img.freepik.com/free-photo/vibrant-colors-flow-liquid-wave-pattern-generated-by-ai_188544-39060.jpg"),
+	Article("Getting Started", "docs/01_getting_started.jl", "https://img.freepik.com/free-photo/futuristic-spaceship-takes-off-into-purple-galaxy-fueled-by-innovation-generated-by-ai_24640-100023.jpg"),
 ];
 
 # ╔═╡ 881d969b-aeef-451e-8c4f-f25ecbbc379c
 article_list_api = Article[
-	Article("API", "docs/api.jl", "https://img.freepik.com/free-photo/modern-technology-workshop-creativity-innovation-communication-development-generated-by-ai_188544-24548.jpg"),
+	Article("API", "docs/99_api.jl", "https://img.freepik.com/free-photo/modern-technology-workshop-creativity-innovation-communication-development-generated-by-ai_188544-24548.jpg"),
 ];
 
 # ╔═╡ 9a5d201c-546d-4624-95e0-7e0c6a72bf0b

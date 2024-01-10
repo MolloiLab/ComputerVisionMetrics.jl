@@ -1,9 +1,8 @@
 ### A Pluto.jl notebook ###
-# v0.19.26
+# v0.19.36
 
 #> [frontmatter]
 #> title = "API"
-#> category = "API"
 
 using Markdown
 using InteractiveUtils
@@ -11,9 +10,7 @@ using InteractiveUtils
 # ╔═╡ 94428604-9725-417c-a3c4-174b32b7cfd6
 # ╠═╡ show_logs = false
 begin
-	using Pkg
-	Pkg.activate(".")
-	Pkg.instantiate()
+	using Pkg; Pkg.activate("."); Pkg.instantiate()
 
 	using ComputerVisionMetrics
 	using PlutoUI
