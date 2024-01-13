@@ -1,6 +1,6 @@
 {
     "sidebar": {
-        "title": "Losers.jl",
+        "title": "ComputerVisionMetrics.jl",
         "elements": [
             {
                 "type": "notebook",
